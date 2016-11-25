@@ -56,7 +56,7 @@ while pipe.stdout.read(width*height*3): # as long as there's data in the pipe, k
         rgb_list.append(draw_next_frame_rgb_avg(pipe.stdout.read(width*height*3)))
         x = x + 1
     except:
-        print("No more frames to process (or error occurred). Number of frames processed:" + x)
+        print("No more frames to process (or error occurred). Number of frames processed:" + str(x))
 
 # create a new image width the same width as number of frames sampled,
 # and draw one vertical line per frame at x=frame number
