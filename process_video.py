@@ -68,7 +68,6 @@ x_pixel = 1
 for rgb_tuple in rgb_list:
     draw.line((x_pixel,0,x_pixel,image_height), fill=rgb_tuple)
     x_pixel = x_pixel + 1
-new.show() 
 new.save(outfilename, "PNG")
 
 print(start_time)
