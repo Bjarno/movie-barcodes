@@ -103,13 +103,16 @@ def draw_next_frame_rgb_avg(raw_frame):
 
 # Go through the pipe one frame at a time until it's empty; store each frame's RGB values in rgb_list 
 rgb_list = []
-x = 1 # optional; purely for displaying how many frames were processed
-while pipe.stdout.read(width*height*3): # as long as there's data in the pipe, keep reading frames
+x = 0 # optional; purely for displaying how many frames were processed
+
+finished = False
+while not(finished): # as long as there's data in the pipe, keep reading frames
 	try:
 		rgb_list.append(draw_next_frame_rgb_avg(pipe.stdout.read(width*height*3)))
 		x = x + 1
 	except:
 		print("No more frames to process (or error occurred). Number of frames processed:" + str(x))
+		finished = True
 
 # create a new image width the same width as number of frames sampled,
 # and draw one vertical line per frame at x=frame number
