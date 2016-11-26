@@ -5,13 +5,15 @@ from PIL import Image, ImageDraw
 import re
 import time
 import sys
-import subprocess
+
+FFMPEG_BIN = "ffmpeg"
+FFPROBE_BIN = "ffprobe"
 
 def get_video_size(video_filename):
 	"""Returns width, height of video using ffprobe"""
 	# Video duration and hence start time
-	proc = subprocess.Popen(['ffprobe', video_filename],
-		stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+	proc = sp.Popen([FFPROBE_BIN, video_filename],
+		stdout=sp.PIPE, stderr=sp.STDOUT)
 	res = proc.communicate()[0].decode('utf-8')
 
 	# Check if ffprobe failed, probably on a bad file
@@ -80,8 +82,7 @@ print("Dimensions:",width,height)
 ###
 ### This section: credit to http://zulko.github.io/blog/2013/09/27/read-and-write-video-frames-in-python-using-ffmpeg/
 
-# Open the video file. In Windows you might need to use FFMPEG_BIN="ffmpeg.exe"; Linux/OSX should be OK.
-FFMPEG_BIN = "ffmpeg"
+# Open the video file.
 command = [ FFMPEG_BIN,
 			'-threads', '4',
 			'-ss', hh+mm+ss,
