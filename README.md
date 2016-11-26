@@ -8,9 +8,9 @@ Turn video files into 'barcodes' where vertical lines represent the average colo
 * Python and [Python Imaging Library](http://www.pythonware.com/products/pil/)
  
 **Usage:**  
-    *python process_video.py inputfile width height*  
+    *python process_video.py inputfile*  
 e.g.  
-    *python process_video.py bigbuckbunny.mp4 320 180*
+    *python process_video.py bigbuckbunny.mp4*
 
 **Tips:**
 * If it doesn't work on Windows, you might have to change FFMPEG_BIN from "ffmpeg" to "ffmpeg.exe"
@@ -30,10 +30,5 @@ And then to repeat the process for all frames:
 ![github-process-2](https://cloud.githubusercontent.com/assets/1192790/11238535/7664e6ac-8e3a-11e5-8989-6be607fa395e.png)
 
 This should work with any movie file ffmpeg can handle (though in practice I've only tested it with mp4 files). 
-
-**Quibbles:**
-* I'd love to autodetect the video resolution but this seems to require grepping some ffmpeg output.
-* There ~~may be~~ is almost certainly a faster approach than the one I'm using. Perhaps I should only take every nth frame?
-* Users should be able to specify an output size instead of having to manually edit the file.
 
 (Video stills: [Big Buck Bunny](https://peach.blender.org/download/))

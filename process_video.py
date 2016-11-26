@@ -108,7 +108,7 @@ while pipe.stdout.read(width*height*3): # as long as there's data in the pipe, k
 
 # create a new image width the same width as number of frames sampled,
 # and draw one vertical line per frame at x=frame number
-image_height = 720 # set image height to whatever you want; you could use int(len(rgb_list)*9/16) to make a 16:9 image for instance
+image_height = int(len(rgb_list)*9/16)
 new = Image.new('RGB',(len(rgb_list),image_height))
 draw = ImageDraw.Draw(new)
 # x = the location on the x axis of the next line to draw
