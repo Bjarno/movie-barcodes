@@ -63,6 +63,9 @@ mm = ":%02d" % (0,)
 ss = ":%02d" % (0,)
 ff = ".0"
 
+# set fps
+fps = "1/4" # sample every 4 seconds
+
 # input file (first argument)
 filename = str(sys.argv[1])
 
@@ -85,7 +88,9 @@ command = [ FFMPEG_BIN,
 			'-i', filename,
 			'-f', 'image2pipe',
 			'-pix_fmt', 'rgb24',
-			'-vcodec', 'rawvideo', '-']
+			'-vcodec', 'rawvideo',
+			'-vf', 'fps=' + str(fps),
+			'-']
 pipe = sp.Popen(command, stdout = sp.PIPE, bufsize=10**8)
 
 # get the average rgb value of a frame
@@ -108,7 +113,8 @@ while pipe.stdout.read(width*height*3): # as long as there's data in the pipe, k
 
 # create a new image width the same width as number of frames sampled,
 # and draw one vertical line per frame at x=frame number
-image_height = int(len(rgb_list)*9/16)
+image_height = 100 # int(len(rgb_list)*9/16)
+
 new = Image.new('RGB',(len(rgb_list),image_height))
 draw = ImageDraw.Draw(new)
 # x = the location on the x axis of the next line to draw
